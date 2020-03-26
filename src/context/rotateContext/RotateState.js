@@ -8,8 +8,6 @@ const RotateState = ( {children} ) => {
         mouseСlick: false,
         startX: null,
         startY: null,
-        currentX: null,
-        currentY: null
     })
 
     const handleMouseUp = (e) => {
@@ -19,20 +17,17 @@ const RotateState = ( {children} ) => {
             mouseСlick: false, 
             startX: null,
             startY: null,
-            currentX: null,
-            currentY: null,
         })
     }
 
     const handleMouseDown = (e) => {
         setRotateState({
             ...rotateState, 
-            mouseСlick: true, 
-            startX: e.nativeEvent.offsetX, 
-            startY:  e.nativeEvent.offsetY
+            startX: e.nativeEvent.x, 
+            startY: e.nativeEvent.y,
+            mouseСlick: true
         })
-        console.log(e.nativeEvent)
-        console.log('down', 'X Y', e.nativeEvent.x, e.nativeEvent.y)
+        console.log('down', rotateState)
     }
 
     const handleMouseMove = (e) => {
@@ -40,11 +35,11 @@ const RotateState = ( {children} ) => {
             const { startX, startY, rotateX, rotateY} = rotateState
             setRotateState({
                 ...rotateState, 
-                rotateX: Math.floor( (rotateX + startY - e.nativeEvent.y) / 10),
-                rotateY: Math.floor(-1 * (rotateY + startX - e.nativeEvent.x) / 10)
-                
+                rotateX: rotateX + (startY - e.nativeEvent.y) / 100,
+                rotateY: rotateY - (startX - e.nativeEvent.x) / 100
             })
-            console.log(`x${e.nativeEvent.x},y${e.nativeEvent.y}`)
+            //console.log(`x${e.nativeEvent.x},y${e.nativeEvent.y}`)
+            //console.log('move', rotateState)
         }
     }
     return (
