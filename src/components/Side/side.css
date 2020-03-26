@@ -6,7 +6,8 @@
 	font: normal 70px Arial;
 	text-align: center;
 	line-height: 300px;
-	color: rgb(252, 0, 197);
+    color: rgb(252, 0, 197);
+    user-select: none; 
 }
 
 .front {

@@ -1,37 +1,48 @@
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import './cube.css'
 import Side from '../Side'
+import rotateContext from '../../context/rotateContext/rotateContext';
 
 function Cube() {
-    const [cubeState, setCubState] = useState({
+   /* const [cubeState, setCubState] = useState({
         rotateX: 0,
         rotateY: 0,
-    })
+        mouseСlick: false
+    })*/
 
-    const {rotateX: X, rotateY: Y} = cubeState
-    let cubeRotate = `rotateY(${Y}deg) rotateX(${X}deg)`
+
+    const {rotateState, handleMouseDown} = useContext(rotateContext);
+
+    const {rotateX: X, rotateY: Y} = rotateState
+    let cubeRotate = `rotateX(${X}deg) rotateY(${Y}deg)`
     const cubeRotateSyle = {transform: cubeRotate}
 
-    const handleKeyDown = (e) => {
+ /*   const handleMouseСlick = () => {
+        setCubState({...cubeState, mouseСlick: !cubeState.mouseСlick})
+    }*/
+
+   /* const handleKeyDown = (e) => {
         if (e.key === "ArrowDown") setCubState({...cubeState, rotateX: cubeState.rotateX - 10})
 		if (e.key === "ArrowRight") setCubState({...cubeState, rotateY: cubeState.rotateY + 10})
 		if (e.key === "ArrowUp") setCubState({...cubeState, rotateX: cubeState.rotateX + 10})
 		if (e.key === "ArrowLeft") setCubState({...cubeState, rotateY: cubeState.rotateY - 10})
-    }
+    }*/
  
-    useEffect(() => {
+    /*useEffect(() => {
         document.addEventListener('keydown', handleKeyDown);
       
         return () => {
           document.removeEventListener('keydown', handleKeyDown);
         };
-    }, [cubeState]);
+    }, [cubeState]);*/
+
+    /*onMouseMove={(e)=>{if (cubeState.mouseСlick) console.log(`x${e.nativeEvent.offsetX},y${e.nativeEvent.offsetY}`)}}*/
 
     return (
         <div 
             className="cube"
-            onClick={(e)=>{console.log(e.type)}} 
+            onMouseDown={handleMouseDown}
             style={cubeRotateSyle}
         > 
             <Side location='front'>front</Side>

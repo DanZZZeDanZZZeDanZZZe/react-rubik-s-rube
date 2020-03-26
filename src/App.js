@@ -2,14 +2,19 @@ import React from 'react';
 import './App.css';
 import CubeContainer from './components/CubeContainer';
 import Cube from './components/Cube';
-import Side from './components/Side';
+import RotateState from './context/rotateContext/RotateState';
+import Area from './components/Area';
 
 function App() {
   return (
     <div className="App">
-      <CubeContainer>
-        <Cube></Cube>
-      </CubeContainer>
+      <RotateState>
+        <Area>
+          <CubeContainer>
+            <Cube/>
+          </CubeContainer>
+        </Area>
+      </RotateState>
     </div>
   );
 }
