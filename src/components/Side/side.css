@@ -1,0 +1,29 @@
+.side {
+	position: absolute;
+	width: inherit;
+	height: inherit;
+	border: 5px dotted rgb(175, 76, 162);
+	font: normal 70px Arial;
+	text-align: center;
+	line-height: 300px;
+	color: rgb(252, 0, 197);
+}
+
+.front {
+	transform: translateZ(150px);
+}
+.back {
+	transform: rotateY(180deg) translateZ(150px);
+}
+.right {
+	transform: rotateY(90deg) translateZ(150px);
+}
+.left {
+	transform: rotateY(-90deg) translateZ(150px);
+}
+.top {
+	transform: rotateX(90deg) translateZ(150px);
+}
+.bottom {
+	transform: rotateX(-90deg) translateZ(150px);
+}

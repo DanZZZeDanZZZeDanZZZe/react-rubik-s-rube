@@ -1,0 +1,7 @@
+.cubde-container {
+    position: relative;
+	margin: 200px auto;
+	width: 300px;
+	height: 300px;
+    perspective: 500px;
+}
