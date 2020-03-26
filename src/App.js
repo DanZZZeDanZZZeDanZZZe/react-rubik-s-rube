@@ -10,9 +10,7 @@ function App() {
     <div className="App">
       <RotateState>
         <Area>
-          <CubeContainer>
-            <Cube/>
-          </CubeContainer>
+          <CubeContainer/>
         </Area>
       </RotateState>
     </div>

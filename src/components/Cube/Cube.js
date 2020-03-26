@@ -4,9 +4,9 @@ import './cube.css'
 import Side from '../Side'
 import rotateContext from '../../context/rotateContext/rotateContext';
 
-function Cube() {
+function Cube({rotateState}) {
 
-    const {rotateState, handleMouseDown} = useContext(rotateContext);
+    const {handleMouseDown} = useContext(rotateContext);
 
     const {rotateX: X, rotateY: Y} = rotateState
     let cubeRotate = `rotateX(${X}deg) rotateY(${Y}deg)`
@@ -28,4 +28,12 @@ function Cube() {
     )
 }
 
-export default Cube
+/*function areEqual(prevProps, nextProps) {
+    const {rotateState: {rotateX: prevRotateX, rotateY: prevRotateY}} = prevProps
+    const {rotateState: {rotateX: nextRotateX, rotateY: nextRotateY}} = nextProps
+    if (Math.abs(prevRotateX - nextRotateX) < 1 || Math.abs(prevRotateY - nextRotateY) < 1) return true
+    console.log('prevProps, nextProps',prevProps, nextProps)
+    return false
+}*/
+
+export default React.memo(Cube/*, areEqual*/)
