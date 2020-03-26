@@ -42,6 +42,7 @@ const RotateState = ( {children} ) => {
             //console.log('move', rotateState)
         }
     }
+    
     return (
         <rotateContext.Provider value={{
             rotateState,
