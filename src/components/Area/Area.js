@@ -9,6 +9,7 @@ const Area = ({children}) => {
         <div 
             className="area"
             onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
             onMouseMove={handleMouseMove}
         >
             {children}

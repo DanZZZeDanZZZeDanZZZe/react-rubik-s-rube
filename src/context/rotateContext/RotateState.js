@@ -29,7 +29,6 @@ const RotateState = ( {children} ) => {
             startY: e.nativeEvent.y,
             mouseСlick: true
         }
-        console.log('down', rotateState)
     }
 
     const handleMouseMove = (e) => {
