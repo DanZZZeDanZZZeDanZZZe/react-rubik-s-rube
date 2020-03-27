@@ -1,45 +1,54 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import rotateContext from './rotateContext'
 
 const RotateState = ( {children} ) => {
     const [rotateState, setRotateState] = useState({
-        rotateX: 20,
-        rotateY: 20,
+        rotateX: 0,
+        rotateY: 0,
+    })
+
+    const mouseRef = useRef({
         mouseСlick: false,
         startX: null,
         startY: null,
     })
 
     const handleMouseUp = (e) => {
-        console.log('up')
-        setRotateState({
-            ...rotateState, 
-            mouseСlick: false, 
+        mouseRef.current = {
+            ...mouseRef.current, 
+            mouseСlick: false,
             startX: null,
             startY: null,
-        })
+        }
     }
 
     const handleMouseDown = (e) => {
-        setRotateState({
-            ...rotateState, 
+        mouseRef.current = {
+            ...mouseRef.current, 
             startX: e.nativeEvent.x, 
             startY: e.nativeEvent.y,
             mouseСlick: true
-        })
+        }
         console.log('down', rotateState)
     }
 
     const handleMouseMove = (e) => {
-        if (rotateState.mouseСlick) {
-            const { startX, startY, rotateX, rotateY} = rotateState
+        if (mouseRef.current.mouseСlick) {
+            const { rotateX, rotateY} = rotateState
+            const { startX, startY } = mouseRef.current
+            const {nativeEvent: {y, x}} = e
+            
             setRotateState({
                 ...rotateState, 
-                rotateX: rotateX + (startY - e.nativeEvent.y) / 100,
-                rotateY: rotateY - (startX - e.nativeEvent.x) / 100
+                rotateX: rotateX + (startY - y) / 10,
+                rotateY: rotateY - (startX - x) / 10
             })
-            //console.log(`x${e.nativeEvent.x},y${e.nativeEvent.y}`)
-            //console.log('move', rotateState)
+
+            mouseRef.current = {
+                ...mouseRef.current,
+                startX: x,
+                startY: y
+            }
         }
     }
     
